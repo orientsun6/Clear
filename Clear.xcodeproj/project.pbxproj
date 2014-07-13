@@ -21,6 +21,8 @@
 		848EFFA71972D4D100B3BD60 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848EFF891972D4D100B3BD60 /* UIKit.framework */; };
 		848EFFAF1972D4D100B3BD60 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 848EFFAD1972D4D100B3BD60 /* InfoPlist.strings */; };
 		848EFFB11972D4D100B3BD60 /* ClearTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 848EFFB01972D4D100B3BD60 /* ClearTests.m */; };
+		848EFFBC1973035100B3BD60 /* ToDoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 848EFFBB1973035100B3BD60 /* ToDoItem.m */; };
+		848EFFBF197311FB00B3BD60 /* ToDoItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 848EFFBE197311FB00B3BD60 /* ToDoItemCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,10 @@
 		848EFFAC1972D4D100B3BD60 /* ClearTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ClearTests-Info.plist"; sourceTree = "<group>"; };
 		848EFFAE1972D4D100B3BD60 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		848EFFB01972D4D100B3BD60 /* ClearTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ClearTests.m; sourceTree = "<group>"; };
+		848EFFBA1973035100B3BD60 /* ToDoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoItem.h; sourceTree = "<group>"; };
+		848EFFBB1973035100B3BD60 /* ToDoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoItem.m; sourceTree = "<group>"; };
+		848EFFBD197311FB00B3BD60 /* ToDoItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToDoItemCell.h; sourceTree = "<group>"; };
+		848EFFBE197311FB00B3BD60 /* ToDoItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToDoItemCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,9 +120,13 @@
 			children = (
 				848EFF941972D4D100B3BD60 /* AppDelegate.h */,
 				848EFF951972D4D100B3BD60 /* AppDelegate.m */,
+				848EFFBA1973035100B3BD60 /* ToDoItem.h */,
+				848EFFBB1973035100B3BD60 /* ToDoItem.m */,
 				848EFF971972D4D100B3BD60 /* Main.storyboard */,
 				848EFF9A1972D4D100B3BD60 /* ViewController.h */,
 				848EFF9B1972D4D100B3BD60 /* ViewController.m */,
+				848EFFBD197311FB00B3BD60 /* ToDoItemCell.h */,
+				848EFFBE197311FB00B3BD60 /* ToDoItemCell.m */,
 				848EFF9D1972D4D100B3BD60 /* Images.xcassets */,
 				848EFF8C1972D4D100B3BD60 /* Supporting Files */,
 			);
@@ -251,6 +261,8 @@
 			files = (
 				848EFF9C1972D4D100B3BD60 /* ViewController.m in Sources */,
 				848EFF961972D4D100B3BD60 /* AppDelegate.m in Sources */,
+				848EFFBF197311FB00B3BD60 /* ToDoItemCell.m in Sources */,
+				848EFFBC1973035100B3BD60 /* ToDoItem.m in Sources */,
 				848EFF921972D4D100B3BD60 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

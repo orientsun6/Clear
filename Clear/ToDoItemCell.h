@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  ToDoItemCell.h
 //  Clear
 //
 //  Created by Charles Liu on 2014-07-13.
@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UITableView *tableview;
+@interface ToDoItemCell : UITableViewCell
 
 @end
