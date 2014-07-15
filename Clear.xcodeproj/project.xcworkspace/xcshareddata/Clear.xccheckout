@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>E3F5A508-4BDF-4CE6-9633-D20B8CC21BE7</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Clear</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>1913CB57-2F6F-41C4-9ED1-D5A64EB96D0C</key>
+		<string>https://github.com/orientsun6/Clear.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Clear.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>1913CB57-2F6F-41C4-9ED1-D5A64EB96D0C</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/orientsun6/Clear.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>1913CB57-2F6F-41C4-9ED1-D5A64EB96D0C</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>1913CB57-2F6F-41C4-9ED1-D5A64EB96D0C</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Clear</string>
+		</dict>
+	</array>
+</dict>
+</plist>
