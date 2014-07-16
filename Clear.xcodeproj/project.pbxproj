@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		840702171976170E00860FA2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840702161976170E00860FA2 /* QuartzCore.framework */; };
 		848EFF861972D4D100B3BD60 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848EFF851972D4D100B3BD60 /* Foundation.framework */; };
 		848EFF881972D4D100B3BD60 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848EFF871972D4D100B3BD60 /* CoreGraphics.framework */; };
 		848EFF8A1972D4D100B3BD60 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848EFF891972D4D100B3BD60 /* UIKit.framework */; };
@@ -36,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		840702161976170E00860FA2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		848EFF821972D4D100B3BD60 /* Clear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clear.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		848EFF851972D4D100B3BD60 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		848EFF871972D4D100B3BD60 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -66,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				840702171976170E00860FA2 /* QuartzCore.framework in Frameworks */,
 				848EFF881972D4D100B3BD60 /* CoreGraphics.framework in Frameworks */,
 				848EFF8A1972D4D100B3BD60 /* UIKit.framework in Frameworks */,
 				848EFF861972D4D100B3BD60 /* Foundation.framework in Frameworks */,
@@ -107,6 +110,7 @@
 		848EFF841972D4D100B3BD60 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				840702161976170E00860FA2 /* QuartzCore.framework */,
 				848EFF851972D4D100B3BD60 /* Foundation.framework */,
 				848EFF871972D4D100B3BD60 /* CoreGraphics.framework */,
 				848EFF891972D4D100B3BD60 /* UIKit.framework */,
@@ -468,6 +472,7 @@
 				848EFFB61972D4D100B3BD60 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		848EFFB71972D4D100B3BD60 /* Build configuration list for PBXNativeTarget "ClearTests" */ = {
 			isa = XCConfigurationList;
@@ -476,6 +481,7 @@
 				848EFFB91972D4D100B3BD60 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "ToDoItemCell.h"
 
 @interface ViewController () <UITableViewDataSource, UITableViewDelegate>
 //array of todo list items
@@ -23,7 +24,7 @@
     self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableview.backgroundColor = [UIColor blackColor];
     
-    [self.tableview registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cell"];
+    [self.tableview registerClass:[ToDoItemCell class] forCellReuseIdentifier:@"cell"];
     
     _toDoItems = [[NSMutableArray alloc] init];
     NSArray *items = @[@"Feed the cat", @"Buy eggs", @"Pack the bags for WWDC", @"Rule the web", @"Buy a new iPhone",
@@ -64,9 +65,10 @@
     
     NSString *ident = @"cell";
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ident];
+    ToDoItemCell *cell = [tableView dequeueReusableCellWithIdentifier:ident];
     
     cell.textLabel.text = self.toDoItems[indexPath.row];
+    cell.textLabel.backgroundColor = [UIColor clearColor];
     
     return cell;
     

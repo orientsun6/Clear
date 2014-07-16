@@ -11,6 +11,8 @@
 
 @implementation ToDoItemCell{
     CAGradientLayer *_gradientLayer;
+    CGPoint _originCenter;
+    BOOL _deleteOnDragRelease;
 }
 
 
@@ -25,6 +27,11 @@
                                   (id)[UIColor clearColor].CGColor, (id)[UIColor colorWithWhite:0.0f alpha:0.1f].CGColor];
         _gradientLayer.locations = @[@0.00f, @0.01f, @0.95f, @1.00f];
         [self.layer insertSublayer:_gradientLayer atIndex:0];
+        
+        UIGestureRecognizer *recognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(handlePan:)];
+        recognizer.delegate = self;
+        [self addGestureRecognizer:recognizer];
+        
     }
     return self;
 }
@@ -35,5 +42,37 @@
     _gradientLayer.frame = self.bounds;                                        
 }
 
+
+#pragma mark -- horizontal pan gesture methods
+-(BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer{
+    CGPoint translation = [gestureRecognizer translationInView:[self superview]];
+    //check for horizontal gesture
+    if (fabs(translation.x) > fabsf(translation.y)) {
+        return YES;
+    }
+    
+    return NO;
+}
+
+
+- (void)handlePan:(UIPanGestureRecognizer *)recognizer {
+    switch (recognizer.state) {
+        case UIGestureRecognizerStateBegan:{
+            _originCenter = self.center;
+        }
+            break;
+            
+        case UIGestureRecognizerStateChanged:{
+            CGPoint translation = [recognizer translationInView:self];
+            self.center = CGPointMake(_originCenter.x + translation.x, _originCenter.y);
+            
+            
+            
+        }
+            break;
+        default:
+            break;
+    }
+}
 
 @end
