@@ -38,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		840702161976170E00860FA2 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		8407021819854A6C00860FA2 /* TodoItemTableViewCellDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodoItemTableViewCellDelegate.h; sourceTree = "<group>"; };
 		848EFF821972D4D100B3BD60 /* Clear.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Clear.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		848EFF851972D4D100B3BD60 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		848EFF871972D4D100B3BD60 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -131,6 +132,7 @@
 				848EFF9B1972D4D100B3BD60 /* ViewController.m */,
 				848EFFBD197311FB00B3BD60 /* ToDoItemCell.h */,
 				848EFFBE197311FB00B3BD60 /* ToDoItemCell.m */,
+				8407021819854A6C00860FA2 /* TodoItemTableViewCellDelegate.h */,
 				848EFF9D1972D4D100B3BD60 /* Images.xcassets */,
 				848EFF8C1972D4D100B3BD60 /* Supporting Files */,
 			);

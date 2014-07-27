@@ -47,7 +47,7 @@
 -(BOOL)gestureRecognizerShouldBegin:(UIPanGestureRecognizer *)gestureRecognizer{
     CGPoint translation = [gestureRecognizer translationInView:[self superview]];
     //check for horizontal gesture
-    if (fabs(translation.x) > fabsf(translation.y)) {
+    if (fabsf(translation.x) > fabsf(translation.y)) {
         return YES;
     }
     
@@ -65,10 +65,25 @@
         case UIGestureRecognizerStateChanged:{
             CGPoint translation = [recognizer translationInView:self];
             self.center = CGPointMake(_originCenter.x + translation.x, _originCenter.y);
-            
+            _deleteOnDragRelease = self.frame.origin.x < -self.frame.size.width/2;
             
             
         }
+            break;
+            
+        case UIGestureRecognizerStateEnded:{
+            CGRect originalFrame = CGRectMake(0, self.frame.origin.y, self.bounds.size.width, self.bounds.size.height);
+            if (!_deleteOnDragRelease){
+                [UIView animateWithDuration:0.2 animations:^{
+                    self.frame = originalFrame;
+                }];
+            }
+            else {
+                [self.delegate toDoItemDeleted:self.toDoItem];
+            }
+            
+        }
+            
             break;
         default:
             break;

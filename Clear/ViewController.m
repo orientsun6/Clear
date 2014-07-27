@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "ToDoItemCell.h"
 
-@interface ViewController () <UITableViewDataSource, UITableViewDelegate>
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate, TodoItemTableViewCellDelegate>
 //array of todo list items
 @property (strong, nonatomic) NSMutableArray *toDoItems;
 
@@ -31,11 +31,27 @@
                        @"Find missing socks", @"Write a new tutorial", @"Master Objective-C", @"Remember your wedding anniversary!",
                        @"Drink less beer", @"Learn to draw", @"Take the car to the garage", @"Sell things on eBay", @"Learn to juggle",
                        @"Give up"];
+    for (NSString *item in items){
+        ToDoItem *todoItem = [[ToDoItem alloc] initWithText:item];
+        [_toDoItems addObject:todoItem];
+    }
     
-    [_toDoItems addObjectsFromArray:items];
+    
+    
     
     //NSLog(_toDoItems.description);
     
+}
+
+#pragma mark -- delegate method
+
+- (void)toDoItemDeleted:(ToDoItem *)todoItem{
+    //use tableview to animate the removal of row
+    NSUInteger index = [self.toDoItems indexOfObject:todoItem];
+    [self.tableview beginUpdates];
+    [self.toDoItems removeObjectAtIndex:index];
+    [self.tableview deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    [self.tableview endUpdates];
 }
 
 #pragma mark -- cell styling
@@ -66,9 +82,12 @@
     NSString *ident = @"cell";
     
     ToDoItemCell *cell = [tableView dequeueReusableCellWithIdentifier:ident];
+    ToDoItem *item = self.toDoItems[indexPath.row];
     
-    cell.textLabel.text = self.toDoItems[indexPath.row];
+    cell.textLabel.text = item.text;
     cell.textLabel.backgroundColor = [UIColor clearColor];
+    cell.delegate = self;
+    cell.toDoItem = item;
     
     return cell;
     

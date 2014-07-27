@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ToDoItem.h"
+#import "TodoItemTableViewCellDelegate.h"
 
 @interface ToDoItemCell : UITableViewCell
+
+@property (nonatomic) ToDoItem *toDoItem;
+
+@property (nonatomic, assign) id <TodoItemTableViewCellDelegate> delegate;
 
 @end
