@@ -14,6 +14,7 @@
 - (id)initWithText: (NSString *)text{
     if (self = [super init]){
         self.text = text;
+        self.completed = NO;
     }
     return self;
    

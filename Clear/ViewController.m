@@ -56,18 +56,21 @@
 
 #pragma mark -- cell styling
 
-- (UIColor *)colorForIndex:(NSInteger) index {
-    NSUInteger itemCount = self.toDoItems.count - 1;
-    float val = ((float)index) / ((float)itemCount) * 0.6;
-    return [UIColor colorWithRed:1.0 green:val blue:0.0 alpha:1.];
-}
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 50.0f;
 }
 
+
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath{
     cell.backgroundColor = [self colorForIndex:indexPath.row];
+}
+
+
+- (UIColor *)colorForIndex:(NSInteger) index {
+    NSUInteger itemCount = self.toDoItems.count - 1;
+    float val = ((float)index) / ((float)itemCount) * 0.6;
+    return [UIColor colorWithRed:1.0 green:val blue:0.0 alpha:1.];
 }
 
 
@@ -82,9 +85,12 @@
     NSString *ident = @"cell";
     
     ToDoItemCell *cell = [tableView dequeueReusableCellWithIdentifier:ident];
+    if (!cell) {
+        cell = [[ToDoItemCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
+    }
     ToDoItem *item = self.toDoItems[indexPath.row];
     
-    cell.textLabel.text = item.text;
+    //cell.textLabel.text = item.text;
     cell.textLabel.backgroundColor = [UIColor clearColor];
     cell.delegate = self;
     cell.toDoItem = item;
