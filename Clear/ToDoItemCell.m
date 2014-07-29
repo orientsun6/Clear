@@ -17,14 +17,28 @@
     StrikethroughLabel *_label;
     CALayer *_itemCompleteLayer;
     BOOL _markCompleteOnDragRelease;
+    UILabel *_tickLabel;
+    UILabel *_crossLabel;
 }
 
+const float UI_CUES_MARGIN = 10.0f;
+const float UI_CUES_WIDTH = 50.0f;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
        // Initialization code
+        
+        //Add tick and cross
+        _tickLabel = [self createCueLabel];
+        _tickLabel.text = @"\u2713";
+        _tickLabel.textAlignment = NSTextAlignmentRight;
+        [self addSubview:_tickLabel];
+        _crossLabel = [self createCueLabel];
+        _crossLabel.text = @"\u2717";
+        _crossLabel.textAlignment = NSTextAlignmentLeft;
+        [self addSubview:_crossLabel];
         
         _gradientLayer = [CAGradientLayer layer];
         _gradientLayer.frame = self.bounds;
@@ -59,6 +73,15 @@
     return self;
 }
 
+//utility method for creating the contextual cues
+- (UILabel *)createCueLabel {
+    UILabel *label = [[UILabel alloc] initWithFrame:CGRectNull];
+    label.textColor = [UIColor whiteColor];
+    label.font = [UIFont boldSystemFontOfSize:32.0];
+    label.backgroundColor = [UIColor clearColor];
+    return label;
+}
+
 const float LABEL_LEFT_MARGIN = 15.0f;
 
 - (void)layoutSubviews {
@@ -67,6 +90,8 @@ const float LABEL_LEFT_MARGIN = 15.0f;
     _gradientLayer.frame = self.bounds;
     _itemCompleteLayer.frame = self.bounds;
     _label.frame = CGRectMake(LABEL_LEFT_MARGIN, 0, self.bounds.size.width - LABEL_LEFT_MARGIN, self.bounds.size.height);
+    _tickLabel.frame = CGRectMake(-UI_CUES_WIDTH - UI_CUES_MARGIN, 0, UI_CUES_WIDTH, self.bounds.size.height);
+    _crossLabel.frame = CGRectMake(UI_CUES_MARGIN + self.bounds.size.width, 0, UI_CUES_WIDTH, self.bounds.size.height);
 }
 
 
@@ -102,6 +127,14 @@ const float LABEL_LEFT_MARGIN = 15.0f;
             _deleteOnDragRelease = self.frame.origin.x < -self.frame.size.width/2;
             _markCompleteOnDragRelease = self.frame.origin.x > self.frame.size.width/2;
             
+            //fade the contextual cues
+            float cueAlpha = fabsf(self.frame.origin.x)/ (self.frame.size.width / 2);
+            _tickLabel.alpha = cueAlpha;
+            _crossLabel.alpha = cueAlpha;
+            
+            //indicate when the item have been pulled far enough to invoke the given action
+            _tickLabel.textColor = _markCompleteOnDragRelease ? [UIColor greenColor] : [UIColor redColor];
+            _crossLabel.textColor = _deleteOnDragRelease ? [UIColor redColor] : [UIColor whiteColor];
             
         }
             break;
