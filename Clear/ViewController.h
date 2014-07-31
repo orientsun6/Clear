@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "TodoItemTableViewCellDelegate.h"
+#import "toDoTableView.h"
 
 @interface ViewController : UIViewController
-@property (weak, nonatomic) IBOutlet UITableView *tableview;
+@property (strong, nonatomic) IBOutlet toDoTableView *tableView;
 
 @end

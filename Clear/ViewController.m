@@ -9,7 +9,7 @@
 #import "ViewController.h"
 #import "ToDoItemCell.h"
 
-@interface ViewController () <UITableViewDataSource, UITableViewDelegate, TodoItemTableViewCellDelegate>
+@interface ViewController () <UITableViewDataSource, UITableViewDelegate, TodoItemTableViewCellDelegate, toDoTableViewDataSource>
 //array of todo list items
 @property (strong, nonatomic) NSMutableArray *toDoItems;
 
@@ -18,13 +18,19 @@
 @implementation ViewController
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
+    /*
+    //old tableview
     self.tableview.dataSource = self;
     self.tableview.delegate = self;
     self.tableview.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.tableview.backgroundColor = [UIColor blackColor];
     
     [self.tableview registerClass:[ToDoItemCell class] forCellReuseIdentifier:@"cell"];
+    
+     */
+    self.tableView.dataSource = self;
+    self.tableView.backgroundColor = [UIColor blackColor];
+    
     
     _toDoItems = [[NSMutableArray alloc] init];
     NSArray *items = @[@"Feed the cat", @"Buy eggs", @"Pack the bags for WWDC", @"Rule the web", @"Buy a new iPhone",
@@ -36,24 +42,71 @@
         [_toDoItems addObject:todoItem];
     }
     
-    
-    
-    
     //NSLog(_toDoItems.description);
     
 }
 
-#pragma mark -- delegate method
+#pragma mark -- New datasource
+- (NSInteger)numberOfRows {
+    return _toDoItems.count;
+}
 
+- (ToDoItemCell *)cellForRow:(NSInteger)row{
+    NSString *ident = @"cell";
+    ToDoItemCell *cell = [[ToDoItemCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ident];
+    ToDoItem *item = _toDoItems[row];
+    cell.toDoItem = item;
+    cell.delegate = self;
+    cell.backgroundColor = [self colorForIndex:row];
+    return cell;
+}
+
+
+#pragma mark -- delegate method
+/*
 - (void)toDoItemDeleted:(ToDoItem *)todoItem{
+ 
     //use tableview to animate the removal of row
     NSUInteger index = [self.toDoItems indexOfObject:todoItem];
     [self.tableview beginUpdates];
     [self.toDoItems removeObjectAtIndex:index];
     [self.tableview deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
     [self.tableview endUpdates];
+     
+    
+    float delay = 0.;
+    [_toDoItems removeObject:todoItem];
+    
+    //find the visible cells
+    NSArray *visibleCells = [self.tableView visibleCells];
+    
+    UIView *lastView = [visibleCells lastObject];
+    bool startAnimating = false;
+    
+    //iterate over all of the cells
+    for (ToDoItemCell *cell in visibleCells) {
+        if (startAnimating) {
+            [UIView animateWithDuration:0.3
+                                  delay:delay
+                                options:UIViewAnimationOptionCurveEaseInOut
+                             animations:^{
+                                 cell.frame = CGRectOffset(cell.frame, 0.0f, -cell.frame.size.height);
+                             }
+                             completion:^(BOOL finished) {
+                                 if (cell == lastView){
+                                     [self.tableView reloadData];
+                                 }
+                             }];
+            delay += 0.03;
+        }
+        if (cell.toDoItem == todoItem){
+            startAnimating = YES;
+            cell.hidden = YES;
+        }
+    }
+    
 }
-
+*/
 #pragma mark -- cell styling
 
 
