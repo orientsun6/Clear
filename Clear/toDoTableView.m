@@ -13,8 +13,9 @@
     UIScrollView *_scrollView;
 }
 
+
 - (id)initWithCoder:(NSCoder *)aDecoder {
-    self = [self initWithCoder:aDecoder];
+    self = [super initWithCoder:aDecoder];
     if (self){
         _scrollView = [[UIScrollView alloc] initWithFrame:CGRectNull];
         [self addSubview:_scrollView];
