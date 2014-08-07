@@ -30,7 +30,7 @@
      */
     self.tableView.dataSource = self;
     self.tableView.backgroundColor = [UIColor blackColor];
-    
+    [self.tableView registerClassForCells:[ToDoItemCell class]];
     
     _toDoItems = [[NSMutableArray alloc] init];
     NSArray *items = @[@"Feed the cat", @"Buy eggs", @"Pack the bags for WWDC", @"Rule the web", @"Buy a new iPhone",
@@ -52,8 +52,7 @@
 }
 
 - (ToDoItemCell *)cellForRow:(NSInteger)row{
-    NSString *ident = @"cell";
-    ToDoItemCell *cell = [[ToDoItemCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:ident];
+    ToDoItemCell *cell = (ToDoItemCell *)[self.tableView dequeueReusableCell];
     ToDoItem *item = _toDoItems[row];
     cell.toDoItem = item;
     cell.delegate = self;
@@ -63,15 +62,15 @@
 
 
 #pragma mark -- delegate method
-/*
+
 - (void)toDoItemDeleted:(ToDoItem *)todoItem{
  
     //use tableview to animate the removal of row
     NSUInteger index = [self.toDoItems indexOfObject:todoItem];
-    [self.tableview beginUpdates];
+    //[self.tableView beginUpdates];
     [self.toDoItems removeObjectAtIndex:index];
-    [self.tableview deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
-    [self.tableview endUpdates];
+    //[self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:index inSection:0]] withRowAnimation:UITableViewRowAnimationFade];
+    //[self.tableView endUpdates];
      
     
     float delay = 0.;
@@ -106,7 +105,7 @@
     }
     
 }
-*/
+
 #pragma mark -- cell styling
 
 

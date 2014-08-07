@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface StrikethroughLabel : UILabel
+@interface StrikethroughLabel : UITextField
 
 @property (nonatomic) BOOL strikethrough;
 

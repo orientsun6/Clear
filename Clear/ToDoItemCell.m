@@ -55,6 +55,8 @@ const float UI_CUES_WIDTH = 50.0f;
         
         //create label renders to-do item text
         _label = [[StrikethroughLabel alloc] initWithFrame:CGRectNull];
+        _label.delegate = self;
+        _label.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         _label.textColor = [UIColor whiteColor];
         _label.font = [UIFont boldSystemFontOfSize:16];
         _label.backgroundColor = [UIColor clearColor];
@@ -155,14 +157,27 @@ const float LABEL_LEFT_MARGIN = 15.0f;
                 _itemCompleteLayer.hidden = NO;
                 _label.strikethrough = YES;
             }
-            
-
         }
             
             break;
         default:
             break;
     }
+}
+
+#pragma mark -- UITextFieldDelegate
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+    //close the keyboard on enter
+    [textField resignFirstResponder];
+    return NO;
+}
+
+- (BOOL)textFieldShouldBeginEditing:(UITextField *)textField{
+    return !self.toDoItem.completed;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    self.toDoItem.text = textField.text;
 }
 
 @end

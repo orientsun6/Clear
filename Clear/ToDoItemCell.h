@@ -10,7 +10,7 @@
 #import "ToDoItem.h"
 #import "TodoItemTableViewCellDelegate.h"
 
-@interface ToDoItemCell : UITableViewCell
+@interface ToDoItemCell : UITableViewCell <UITextFieldDelegate>
 
 @property (nonatomic) ToDoItem *toDoItem;
 

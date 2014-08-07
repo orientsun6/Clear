@@ -8,9 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "toDoTableViewDataSource.h"
+#import "ToDoItemCell.h"
 
-@interface toDoTableView : UIView
+
+@interface toDoTableView : UIView <UIScrollViewDelegate>
 
 @property (nonatomic, assign) id <toDoTableViewDataSource> dataSource;
+
+- (UIView *)dequeueReusableCell;
+
+- (void)registerClassForCells:(Class)cellClass;
+
+- (NSArray *)visibleCells;
+
+- (void)reloadData;
 
 @end
