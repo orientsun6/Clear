@@ -47,10 +47,12 @@ const float TODO_ROW_HEIGHT = 50.f;
     for (UIView *cell in [self cellSubviews]){
         if (cell.frame.origin.y + cell.frame.size.height < self.scrollView.contentOffset.y ){
             [self recycleCell:cell];
+            //NSLog(@"1");
         }
         
         if (cell.frame.origin.y > self.scrollView.contentOffset.y + self.scrollView.frame.size.height) {
             [self recycleCell:cell];
+            //NSLog(@"1");
         }
     }
     
@@ -60,13 +62,16 @@ const float TODO_ROW_HEIGHT = 50.f;
     
     //add the cells
     for (int row = firstVisibleIndex; row < lastVisibleIndex; row++) {
-        UIView *cell = [_dataSource cellForRow:row];
-        //set its location
-        float topEdgeForRow = row  * TODO_ROW_HEIGHT;
-        CGRect frame = CGRectMake(0, topEdgeForRow, self.scrollView.frame.size.width, TODO_ROW_HEIGHT);
-        cell.frame = frame;
-        // add to the view
-        [self.scrollView addSubview:cell];
+        UIView *cell = [self cellForRow:row];
+        if (!cell) {
+            //set its location
+            UIView *cell = [_dataSource cellForRow:row];
+            float topEdgeForRow = row  * TODO_ROW_HEIGHT;
+            CGRect frame = CGRectMake(0, topEdgeForRow, self.scrollView.frame.size.width, TODO_ROW_HEIGHT);
+            cell.frame = frame;
+            // add to the view
+            [self.scrollView insertSubview:cell atIndex:0];
+        }
     }
 }
 
