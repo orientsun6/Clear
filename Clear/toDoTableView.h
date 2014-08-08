@@ -13,6 +13,7 @@
 
 @interface toDoTableView : UIView <UIScrollViewDelegate>
 
+@property (nonatomic) UIScrollView *scrollView;
 @property (nonatomic, assign) id <toDoTableViewDataSource> dataSource;
 
 - (UIView *)dequeueReusableCell;

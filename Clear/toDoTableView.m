@@ -9,28 +9,26 @@
 #import "toDoTableView.h"
 
 @implementation toDoTableView{
-    // the scroll view that hosts the cells
-    UIScrollView *_scrollView;
     NSMutableSet *_reuseCells;
     Class _cellClass;
 }
 
 
 - (id)initWithCoder:(NSCoder *)aDecoder {
-    _reuseCells = [[NSMutableSet alloc] init];
     self = [super initWithCoder:aDecoder];
     if (self){
-        _scrollView = [[UIScrollView alloc] initWithFrame:CGRectNull];
-        [self addSubview:_scrollView];
-        _scrollView.backgroundColor = [UIColor clearColor];
+        self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectNull];
+        [self addSubview:self.scrollView];
+        self.scrollView.backgroundColor = [UIColor clearColor];
         self.backgroundColor = [UIColor clearColor];
-        _scrollView.delegate = self;
+        self.scrollView.delegate = self;
+        _reuseCells = [[NSMutableSet alloc] init];
     }
     return self;
 }
 
 - (void)layoutSubviews {
-    _scrollView.frame = self.frame;
+    self.scrollView.frame = self.frame;
     [self refreshView];
 }
 
@@ -40,35 +38,35 @@ const float TODO_ROW_HEIGHT = 50.f;
 // creates new ones
 
 - (void)refreshView {
-    if (CGRectIsNull(_scrollView.frame)) return;
+    if (CGRectIsNull(self.scrollView.frame)) return;
     
     //set the scrollview height
-    _scrollView.contentSize = CGSizeMake(_scrollView.bounds.size.width, [_dataSource numberOfRows] * TODO_ROW_HEIGHT);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.bounds.size.width, [_dataSource numberOfRows] * TODO_ROW_HEIGHT);
     
     //remove cells that are no visible
     for (UIView *cell in [self cellSubviews]){
-        if (cell.frame.origin.y + cell.frame.size.height < _scrollView.contentOffset.y ){
+        if (cell.frame.origin.y + cell.frame.size.height < self.scrollView.contentOffset.y ){
             [self recycleCell:cell];
         }
         
-        if (cell.frame.origin.y > _scrollView.contentOffset.y + _scrollView.frame.size.height) {
+        if (cell.frame.origin.y > self.scrollView.contentOffset.y + self.scrollView.frame.size.height) {
             [self recycleCell:cell];
         }
     }
     
     //ensure you have a cell for each row
-    int firstVisibleIndex = MAX(0, floor(_scrollView.contentOffset.y/ TODO_ROW_HEIGHT));
-    int lastVisibleIndex = MIN([_dataSource numberOfRows], firstVisibleIndex + 1 + ceil(_scrollView.frame.size.height/ TODO_ROW_HEIGHT));
+    int firstVisibleIndex = MAX(0, floor(self.scrollView.contentOffset.y/ TODO_ROW_HEIGHT));
+    int lastVisibleIndex = MIN([_dataSource numberOfRows], firstVisibleIndex + 1 + ceil(self.scrollView.frame.size.height/ TODO_ROW_HEIGHT));
     
     //add the cells
     for (int row = firstVisibleIndex; row < lastVisibleIndex; row++) {
         UIView *cell = [_dataSource cellForRow:row];
         //set its location
         float topEdgeForRow = row  * TODO_ROW_HEIGHT;
-        CGRect frame = CGRectMake(0, topEdgeForRow, _scrollView.frame.size.width, TODO_ROW_HEIGHT);
+        CGRect frame = CGRectMake(0, topEdgeForRow, self.scrollView.frame.size.width, TODO_ROW_HEIGHT);
         cell.frame = frame;
         // add to the view
-        [_scrollView insertSubview:cell atIndex:0];
+        [self.scrollView addSubview:cell];
     }
 }
 
@@ -91,7 +89,7 @@ const float TODO_ROW_HEIGHT = 50.f;
 
 - (NSArray *)cellSubviews {
     NSMutableArray *cells = [[NSMutableArray alloc] init];
-    for (UIView *subView in _scrollView.subviews) {
+    for (UIView *subView in self.scrollView.subviews) {
         if ([subView isKindOfClass:[ToDoItemCell class]]){
             [cells addObject:subView];
         }

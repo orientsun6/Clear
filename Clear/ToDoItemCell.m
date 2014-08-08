@@ -177,7 +177,12 @@ const float LABEL_LEFT_MARGIN = 15.0f;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
+    [self.delegate cellDidEndEditing:self];
     self.toDoItem.text = textField.text;
+}
+
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    [self.delegate cellDidBeginEditing:self];
 }
 
 @end

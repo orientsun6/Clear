@@ -9,7 +9,10 @@
 #import "ViewController.h"
 #import "ToDoItemCell.h"
 
-@interface ViewController () <UITableViewDataSource, UITableViewDelegate, TodoItemTableViewCellDelegate, toDoTableViewDataSource>
+@interface ViewController () <TodoItemTableViewCellDelegate, toDoTableViewDataSource>
+{
+    float _editingOffset;
+}
 //array of todo list items
 @property (strong, nonatomic) NSMutableArray *toDoItems;
 
@@ -106,6 +109,33 @@
     
 }
 
+
+- (void)cellDidBeginEditing:(ToDoItemCell *)editingCell {
+    _editingOffset = self.tableView.scrollView.contentOffset.y - editingCell.frame.origin.y;
+    for (ToDoItemCell *cell in [self.tableView visibleCells]){
+        [UIView animateWithDuration:0.3 animations:^{
+            cell.frame = CGRectOffset(cell.frame, 0, _editingOffset);
+            if (cell != editingCell) {
+                cell.alpha = 0.3;
+            }
+        }];
+    }
+}
+
+- (void)cellDidEndEditing:(ToDoItemCell *)editingCell {
+    for (ToDoItemCell *cell in [self.tableView visibleCells]){
+        [UIView animateWithDuration:0.3 animations:^{
+            cell.frame = CGRectOffset(cell.frame, 0, -_editingOffset);
+            if (cell != editingCell) {
+                cell.alpha = 1.;
+            }
+        }];
+    }
+}
+
+
+
+
 #pragma mark -- cell styling
 
 
@@ -118,13 +148,14 @@
     cell.backgroundColor = [self colorForIndex:indexPath.row];
 }
 
-
 - (UIColor *)colorForIndex:(NSInteger) index {
     NSUInteger itemCount = self.toDoItems.count - 1;
     float val = ((float)index) / ((float)itemCount) * 0.6;
     return [UIColor colorWithRed:1.0 green:val blue:0.0 alpha:1.];
 }
 
+
+/*
 
 #pragma mark -- datasource method
 
@@ -151,6 +182,6 @@
     
 }
 
-
+*/
 
 @end
