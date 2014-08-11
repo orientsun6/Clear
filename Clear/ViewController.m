@@ -71,8 +71,15 @@
 
 - (void)itemAdded {
     //create a new item
+    [self itemAddedAtIndex:0];
+
+}
+
+- (void)itemAddedAtIndex:(NSUInteger)index{
+    
     ToDoItem *toDoItem = [[ToDoItem alloc] init];
-    [_toDoItems insertObject:toDoItem atIndex:0];
+    [_toDoItems insertObject:toDoItem atIndex:index];
+    
     [_tableView reloadData];
     ToDoItemCell *editCell;
     for (ToDoItemCell *cell in [_tableView visibleCells]){

@@ -10,9 +10,6 @@
 #import "ToDoItemCell.h"
 
 
-#define TODO_ROW_HEIGHT 50.0f
-
-
 @implementation toDoTableViewDragAddNew{
     ToDoItemCell* _placeHolderCell;
     BOOL _pullDownInProgress;

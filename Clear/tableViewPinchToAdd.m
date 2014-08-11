@@ -54,6 +54,10 @@ typedef struct touchPoints touchPoints;
             }
         }
             break;
+        case UIGestureRecognizerStateEnded:{
+            [self pinchEnded:recognizer];
+        }
+            break;
         default:
             break;
     }
@@ -69,12 +73,12 @@ typedef struct touchPoints touchPoints;
         UIView *cell = (UIView *)visibleCells[i];
         if ([self viewContainsPoint:cell withPoint:_initialTouchPoints.upper]){
             _pointOneCellIndex = i;
-            cell.backgroundColor = [UIColor purpleColor];
+            //cell.backgroundColor = [UIColor purpleColor];
         }
         
         if ([self viewContainsPoint:cell withPoint:_initialTouchPoints.lower]) {
             _pointTwoCellIndex = i;
-            cell.backgroundColor = [UIColor purpleColor];
+            //cell.backgroundColor = [UIColor purpleColor];
         }
     }
     
@@ -109,7 +113,39 @@ typedef struct touchPoints touchPoints;
             cell.transform = CGAffineTransformMakeTranslation(0, delta); // move them down
         }
     }
+    
+    float gapSize = delta * 2;
+    float cappedGapSize = MIN(gapSize, TODO_ROW_HEIGHT);
+    _placeholderCell.transform = CGAffineTransformMakeScale(1.0f, cappedGapSize / TODO_ROW_HEIGHT);
+    _placeholderCell.label.text = gapSize > TODO_ROW_HEIGHT ? @"Release to Add Item" : @"Pull to Add Item";
+    _placeholderCell.alpha = MIN(1.0f, gapSize/ TODO_ROW_HEIGHT);
+    
+    _pinchExceededRequiredDistance = gapSize > TODO_ROW_HEIGHT;
+    
+}
 
+- (void)pinchEnded:(UIGestureRecognizer *)recognizer {
+    _pinchInProgress = NO;
+    
+    //remove the placeholder cell
+    _placeholderCell.transform = CGAffineTransformIdentity;
+    [_placeholderCell removeFromSuperview];
+    
+    if (_pinchExceededRequiredDistance) {
+        //add a new item
+        int indexOffset = floor(_tableView.scrollView.contentOffset.y / TODO_ROW_HEIGHT);
+        [_tableView.dataSource itemAddedAtIndex:_pointTwoCellIndex + indexOffset];
+    }
+    else{
+        [UIView animateWithDuration:0.2f delay:0.0f options:UIViewAnimationOptionCurveEaseInOut
+                         animations:^{
+                             NSArray *visibleCells = [_tableView visibleCells];
+                             for ( ToDoItemCell *cell in visibleCells) {
+                                 cell.transform = CGAffineTransformIdentity;
+                             }
+                         }
+                         completion:nil];
+    }
     
 }
 
