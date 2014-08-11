@@ -15,6 +15,7 @@
 
 @property (nonatomic) UIScrollView *scrollView;
 @property (nonatomic, assign) id <toDoTableViewDataSource> dataSource;
+@property (nonatomic, assign) id <UIScrollViewDelegate> delegate;
 
 - (UIView *)dequeueReusableCell;
 

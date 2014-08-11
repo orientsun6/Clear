@@ -7,19 +7,18 @@
 //
 
 #import "ToDoItemCell.h"
-#import "StrikethroughLabel.h"
 #import <QuartzCore/QuartzCore.h>
 
 @implementation ToDoItemCell{
     CAGradientLayer *_gradientLayer;
     CGPoint _originCenter;
     BOOL _deleteOnDragRelease;
-    StrikethroughLabel *_label;
     CALayer *_itemCompleteLayer;
     BOOL _markCompleteOnDragRelease;
     UILabel *_tickLabel;
     UILabel *_crossLabel;
 }
+
 
 const float UI_CUES_MARGIN = 10.0f;
 const float UI_CUES_WIDTH = 50.0f;
@@ -54,13 +53,13 @@ const float UI_CUES_WIDTH = 50.0f;
         [self.contentView.layer addSublayer:_itemCompleteLayer];
         
         //create label renders to-do item text
-        _label = [[StrikethroughLabel alloc] initWithFrame:CGRectNull];
-        _label.delegate = self;
-        _label.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        _label.textColor = [UIColor whiteColor];
-        _label.font = [UIFont boldSystemFontOfSize:16];
-        _label.backgroundColor = [UIColor clearColor];
-        [self addSubview:_label];
+        self.label = [[StrikethroughLabel alloc] initWithFrame:CGRectNull];
+        self.label.delegate = self;
+        self.label.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        self.label.textColor = [UIColor whiteColor];
+        self.label.font = [UIFont boldSystemFontOfSize:16];
+        self.label.backgroundColor = [UIColor clearColor];
+        [self addSubview:self.label];
         //remove the default blue highlight for the selected cell
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -91,7 +90,7 @@ const float LABEL_LEFT_MARGIN = 15.0f;
     //ensure the gradient layers occupies the full bounds
     _gradientLayer.frame = self.bounds;
     _itemCompleteLayer.frame = self.bounds;
-    _label.frame = CGRectMake(LABEL_LEFT_MARGIN, 0, self.bounds.size.width - LABEL_LEFT_MARGIN, self.bounds.size.height);
+    self.label.frame = CGRectMake(LABEL_LEFT_MARGIN, 0, self.bounds.size.width - LABEL_LEFT_MARGIN, self.bounds.size.height);
     _tickLabel.frame = CGRectMake(-UI_CUES_WIDTH - UI_CUES_MARGIN, 0, UI_CUES_WIDTH, self.bounds.size.height);
     _crossLabel.frame = CGRectMake(UI_CUES_MARGIN + self.bounds.size.width, 0, UI_CUES_WIDTH, self.bounds.size.height);
 }
@@ -99,8 +98,8 @@ const float LABEL_LEFT_MARGIN = 15.0f;
 
 - (void)setToDoItem:(ToDoItem *)toDoItem {
     _toDoItem = toDoItem;
-    _label.text = toDoItem.text;
-    _label.strikethrough = toDoItem.completed;
+    self.label.text = toDoItem.text;
+    self.label.strikethrough = toDoItem.completed;
     _itemCompleteLayer.hidden = !toDoItem.completed;
 }
 
@@ -155,7 +154,7 @@ const float LABEL_LEFT_MARGIN = 15.0f;
             if (_markCompleteOnDragRelease){
                 self.toDoItem.completed = YES;
                 _itemCompleteLayer.hidden = NO;
-                _label.strikethrough = YES;
+                self.label.strikethrough = YES;
             }
         }
             

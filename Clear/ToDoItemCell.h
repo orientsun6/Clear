@@ -9,11 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "ToDoItem.h"
 #import "TodoItemTableViewCellDelegate.h"
+#import "StrikethroughLabel.h"
 
 @interface ToDoItemCell : UITableViewCell <UITextFieldDelegate>
 
 @property (nonatomic) ToDoItem *toDoItem;
 
 @property (nonatomic, assign) id <TodoItemTableViewCellDelegate> delegate;
-
+@property (nonatomic, strong) StrikethroughLabel *label;
 @end

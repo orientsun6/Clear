@@ -9,9 +9,11 @@
 #import "ViewController.h"
 #import "ToDoItemCell.h"
 
+
 @interface ViewController () <TodoItemTableViewCellDelegate, toDoTableViewDataSource>
 {
     float _editingOffset;
+    toDoTableViewDragAddNew *_dragAddNew;
 }
 //array of todo list items
 @property (strong, nonatomic) NSMutableArray *toDoItems;
@@ -45,6 +47,7 @@
         [_toDoItems addObject:todoItem];
     }
     
+    _dragAddNew = [[toDoTableViewDragAddNew alloc] initWithTableView:self.tableView];
     //NSLog(_toDoItems.description);
     
 }
@@ -63,6 +66,20 @@
     return cell;
 }
 
+- (void)itemAdded {
+    //create a new item
+    ToDoItem *toDoItem = [[ToDoItem alloc] init];
+    [_toDoItems insertObject:toDoItem atIndex:0];
+    [_tableView reloadData];
+    ToDoItemCell *editCell;
+    for (ToDoItemCell *cell in [_tableView visibleCells]){
+        if (cell.toDoItem == toDoItem) {
+            editCell = cell;
+            break;
+        }
+    }
+    [editCell.label becomeFirstResponder];
+}
 
 #pragma mark -- delegate method
 

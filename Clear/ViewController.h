@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "TodoItemTableViewCellDelegate.h"
 #import "toDoTableView.h"
+#import "toDoTableViewDragAddNew.h"
 
 @interface ViewController : UIViewController
 @property (strong, nonatomic) IBOutlet toDoTableView *tableView;

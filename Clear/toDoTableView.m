@@ -32,7 +32,7 @@
     [self refreshView];
 }
 
-const float TODO_ROW_HEIGHT = 50.f;
+#define TODO_ROW_HEIGHT 50.0f
 
 // based on the current location to recycle off-screen cells and
 // creates new ones
@@ -155,7 +155,27 @@ const float TODO_ROW_HEIGHT = 50.f;
 #pragma mark - UIScrollViewDelegate 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     [self refreshView];
+    //forward the delegate method
+    if ([self.delegate respondsToSelector:@selector(scrollViewDidScroll:)]) {
+        [self.delegate scrollViewDidScroll:scrollView];
+    }
 }
+
+#pragma mark - forwarding UIScrollView delegate
+- (BOOL)respondsToSelector:(SEL)aSelector {
+    if ([self.delegate respondsToSelector:aSelector]){
+        return YES;
+    }
+    return [super respondsToSelector:aSelector];
+}
+
+- (id)forwardingTargetForSelector:(SEL)aSelector {
+    if ([self.delegate respondsToSelector:aSelector]){
+        return self.delegate;
+    }
+    return [super forwardingTargetForSelector:aSelector];
+}
+
 
 #pragma mark - property setters
 - (void)setDataSource:(id<toDoTableViewDataSource>)dataSource {
