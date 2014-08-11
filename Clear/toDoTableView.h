@@ -10,6 +10,7 @@
 #import "toDoTableViewDataSource.h"
 #import "ToDoItemCell.h"
 
+#define TODO_ROW_HEIGHT 50.0f
 
 @interface toDoTableView : UIView <UIScrollViewDelegate>
 

@@ -32,7 +32,7 @@
     [self refreshView];
 }
 
-#define TODO_ROW_HEIGHT 50.0f
+
 
 // based on the current location to recycle off-screen cells and
 // creates new ones

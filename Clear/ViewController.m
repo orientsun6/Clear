@@ -8,12 +8,14 @@
 
 #import "ViewController.h"
 #import "ToDoItemCell.h"
+#import "tableViewPinchToAdd.h"
 
 
 @interface ViewController () <TodoItemTableViewCellDelegate, toDoTableViewDataSource>
 {
     float _editingOffset;
     toDoTableViewDragAddNew *_dragAddNew;
+    tableViewPinchToAdd *_pinchAddNew;
 }
 //array of todo list items
 @property (strong, nonatomic) NSMutableArray *toDoItems;
@@ -48,6 +50,7 @@
     }
     
     _dragAddNew = [[toDoTableViewDragAddNew alloc] initWithTableView:self.tableView];
+    _pinchAddNew = [[tableViewPinchToAdd alloc] initWithTableView:self.tableView];
     //NSLog(_toDoItems.description);
     
 }

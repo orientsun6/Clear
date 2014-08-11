@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5D9DE2AE19984F6400B938E9 /* toDoTableViewDragAddNew.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9DE2AD19984F6400B938E9 /* toDoTableViewDragAddNew.m */; };
+		5D9DE2B1199915A500B938E9 /* tableViewPinchToAdd.m in Sources */ = {isa = PBXBuildFile; fileRef = 5D9DE2B0199915A500B938E9 /* tableViewPinchToAdd.m */; };
 		5DB432471989D9C700B50BE4 /* toDoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DB432461989D9C700B50BE4 /* toDoTableView.m */; };
 		5DD7B48A19858649005712B8 /* StrikethroughLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5DD7B48919858649005712B8 /* StrikethroughLabel.m */; };
 		840702171976170E00860FA2 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 840702161976170E00860FA2 /* QuartzCore.framework */; };
@@ -42,6 +43,8 @@
 /* Begin PBXFileReference section */
 		5D9DE2AC19984F6400B938E9 /* toDoTableViewDragAddNew.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = toDoTableViewDragAddNew.h; sourceTree = "<group>"; };
 		5D9DE2AD19984F6400B938E9 /* toDoTableViewDragAddNew.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = toDoTableViewDragAddNew.m; sourceTree = "<group>"; };
+		5D9DE2AF199915A500B938E9 /* tableViewPinchToAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tableViewPinchToAdd.h; sourceTree = "<group>"; };
+		5D9DE2B0199915A500B938E9 /* tableViewPinchToAdd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tableViewPinchToAdd.m; sourceTree = "<group>"; };
 		5DB432451989D9C700B50BE4 /* toDoTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = toDoTableView.h; sourceTree = "<group>"; };
 		5DB432461989D9C700B50BE4 /* toDoTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = toDoTableView.m; sourceTree = "<group>"; };
 		5DB432481989DA9800B50BE4 /* toDoTableViewDataSource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = toDoTableViewDataSource.h; sourceTree = "<group>"; };
@@ -142,6 +145,8 @@
 				848EFF9B1972D4D100B3BD60 /* ViewController.m */,
 				5D9DE2AC19984F6400B938E9 /* toDoTableViewDragAddNew.h */,
 				5D9DE2AD19984F6400B938E9 /* toDoTableViewDragAddNew.m */,
+				5D9DE2AF199915A500B938E9 /* tableViewPinchToAdd.h */,
+				5D9DE2B0199915A500B938E9 /* tableViewPinchToAdd.m */,
 				848EFFBD197311FB00B3BD60 /* ToDoItemCell.h */,
 				848EFFBE197311FB00B3BD60 /* ToDoItemCell.m */,
 				5DB432451989D9C700B50BE4 /* toDoTableView.h */,
@@ -289,6 +294,7 @@
 				848EFFBC1973035100B3BD60 /* ToDoItem.m in Sources */,
 				5DD7B48A19858649005712B8 /* StrikethroughLabel.m in Sources */,
 				5D9DE2AE19984F6400B938E9 /* toDoTableViewDragAddNew.m in Sources */,
+				5D9DE2B1199915A500B938E9 /* tableViewPinchToAdd.m in Sources */,
 				848EFF921972D4D100B3BD60 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
