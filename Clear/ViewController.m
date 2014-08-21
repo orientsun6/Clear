@@ -53,7 +53,39 @@
     _pinchAddNew = [[tableViewPinchToAdd alloc] initWithTableView:self.tableView];
     //NSLog(_toDoItems.description);
     
+    //long press gesture
+    UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressGestureRecognized:)];
+    [self.tableView addGestureRecognizer:longPress];
+    
 }
+
+
+#pragma mark -- Long Press
+- (IBAction)longPressGestureRecognized:(id)sender {
+    
+    static UIView *snapshot = nil;
+    static NSIndexPath *sourceIndexPath = nil;
+    
+    CGPoint location = [longPress locationInView:self.tableView];
+    NSIndexPath *indexPath = 
+    
+    
+    UILongPressGestureRecognizer *longPress = (UILongPressGestureRecognizer *)sender;
+    UIGestureRecognizerState state = longPress.state;
+    
+    switch (state) {
+        case UIGestureRecognizerStateBegan:{
+            if (index) {
+                <#statements#>
+            }
+        }
+            break;
+            
+        default:
+            break;
+    }
+}
+
 
 #pragma mark -- New datasource
 - (NSInteger)numberOfRows {
